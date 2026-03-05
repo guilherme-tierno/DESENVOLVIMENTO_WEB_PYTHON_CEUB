@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Ticket #{{ ticket.id }}{% endblock %}
+
+{% block content %}
+  <h1>Ticket #{{ ticket.id }}</h1>
+
+  <section class="card">
+    <h2>{{ ticket.title }}</h2>
+    <p class="muted">
+      Status: <b>{{ ticket.status }}</b> |
+      Prioridade: <b>{{ ticket.priority }}</b>
+    </p>
+
+    <p><b>Cliente:</b> {{ ticket.customer_name }} ({{ ticket.customer_email }})</p>
+    <p><b>Agente:</b> {{ ticket.agent_name or "—" }}</p>
+
+    <hr>
+    <p>{{ ticket.description or "Sem descrição." }}</p>
+  </section>
+
+  <h2 style="margin-top:16px;">Updates</h2>
+  <ul class="list">
+    {% for up in updates %}
+      <li class="list-item">
+        <div><b>{{ up.author_name }}</b> — <span class="muted">{{ up.created_at }}</span></div>
+        <div>{{ up.message }}</div>
+      </li>
+    {% else %}
+      <li class="list-item muted">Nenhuma atualização.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

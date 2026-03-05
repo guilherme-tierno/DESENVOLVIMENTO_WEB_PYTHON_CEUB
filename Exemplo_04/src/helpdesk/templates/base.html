@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}HelpDesk{% endblock %}</title>
+
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#f7f7f7; color:#111; }
+    .topbar { background:#fff; border-bottom:1px solid #e5e5e5; }
+    .container { max-width: 920px; margin: 0 auto; padding: 16px; }
+    .brand { font-weight:700; text-decoration:none; color:#111; margin-right:16px; }
+    .menu a { margin-right: 12px; text-decoration:none; color:#333; }
+    .menu a:hover { text-decoration:underline; }
+
+    .card { background:#fff; border:1px solid #eee; border-radius:10px; padding:14px; }
+    .muted { color:#666; font-size: 0.9rem; }
+    .list { list-style:none; padding:0; margin:0; }
+    .list-item { padding:10px 0; border-bottom:1px solid #eee; }
+    .table { width:100%; border-collapse:collapse; background:#fff; }
+    .table th, .table td { border:1px solid #ddd; padding:8px; text-align:left; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="/">HelpDesk</a>
+
+      <nav class="menu">
+        <a href="/">Home</a>
+        <a href="/tickets">Tickets</a>
+        <a href="/users">Users</a>
+        <a href="/sobre">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

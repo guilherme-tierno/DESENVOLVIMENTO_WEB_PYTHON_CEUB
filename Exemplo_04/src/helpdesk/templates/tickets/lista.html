@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Tickets{% endblock %}
+
+{% block content %}
+<h1>Tickets</h1>
+
+<ul>
+  {% for t in tickets %}
+    <li>
+      <a href="/tickets/{{ t.id }}">
+        #{{ t.id }} — {{ t.title }}
+      </a>
+      ({{ t.status }}, {{ t.priority }})
+      — Cliente: {{ t.customer_name }}
+      {% if t.agent_name %} — Agente: {{ t.agent_name }} {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
