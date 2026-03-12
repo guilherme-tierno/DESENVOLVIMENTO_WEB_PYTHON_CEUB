@@ -3,12 +3,12 @@ import pymysql
 try:
     conexao = pymysql.connect(
         host="localhost",
-        user="salvador",
-        password="salvador",
+        user="root",
+        password="61bfaculdade",
         database="helpdesk_lite_db",
         port=3306
     )
-
+    
     print("Conexão com o MySQL realizada com sucesso!")
 
     conexao.close()

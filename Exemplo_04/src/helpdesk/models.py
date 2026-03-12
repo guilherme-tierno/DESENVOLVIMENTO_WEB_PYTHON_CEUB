@@ -20,13 +20,8 @@ def list_users(limit=50):
 def list_tickets(limit=50):
     sql = text("""
         SELECT
-          t.id,
-          t.title,
-          t.status,
-          t.priority,
-          t.created_at,
-          u.name AS customer_name,
-          a.name AS agent_name
+          t.id, t.title, t.status, t.priority, t.created_at,
+          u.name AS customer_name, a.name AS agent_name
         FROM tickets t
         JOIN users u ON u.id = t.customer_id
         LEFT JOIN users a ON a.id = t.agent_id
@@ -36,13 +31,16 @@ def list_tickets(limit=50):
     with engine.connect() as conn:
         return conn.execute(sql, {"limit": limit}).mappings().all()
 
+def update_ticket_status(ticket_id: int, new_status: str):
+    """Atualiza o status do ticket no MySQL."""
+    sql = text("UPDATE tickets SET status = :status WHERE id = :id")
+    with engine.begin() as conn:
+        conn.execute(sql, {"status": new_status, "id": ticket_id})
+
 def get_ticket(ticket_id: int):
+    """Busca um ticket e seus updates."""
     sql_ticket = text("""
-        SELECT
-          t.*,
-          u.name  AS customer_name,
-          u.email AS customer_email,
-          a.name  AS agent_name
+        SELECT t.*, u.name AS customer_name, u.email AS customer_email, a.name AS agent_name
         FROM tickets t
         JOIN users u ON u.id = t.customer_id
         LEFT JOIN users a ON a.id = t.agent_id
@@ -50,11 +48,7 @@ def get_ticket(ticket_id: int):
     """)
 
     sql_updates = text("""
-        SELECT
-          tu.id,
-          tu.message,
-          tu.created_at,
-          au.name AS author_name
+        SELECT tu.id, tu.message, tu.created_at, au.name AS author_name
         FROM ticket_updates tu
         JOIN users au ON au.id = tu.author_id
         WHERE tu.ticket_id = :id
