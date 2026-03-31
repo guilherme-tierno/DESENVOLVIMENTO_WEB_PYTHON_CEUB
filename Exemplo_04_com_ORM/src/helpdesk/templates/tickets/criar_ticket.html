@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Criar Ticket{% endblock %}
+
+{% block page_header %}
+  <h1>Criar Ticket</h1>
+  <p>Registre uma nova solicitação de suporte com clareza e prioridade adequada.</p>
+{% endblock %}
+
+{% block content %}
+<div class="card form-card">
+  <div class="card-header">
+    <h2>Novo chamado</h2>
+  </div>
+
+  <div class="card-body">
+    <form method="post">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="user_id" class="form-label">Usuário</label>
+          <select name="user_id" id="user_id" class="form-select" required>
+            {% for user in users %}
+              <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="title" class="form-label">Título</label>
+          <input type="text" name="title" id="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="description" class="form-label">Descrição</label>
+          <textarea name="description" id="description" class="form-textarea" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="priority" class="form-label">Prioridade</label>
+          <select name="priority" id="priority" class="form-select" required>
+            <option value="Baixa">Baixa</option>
+            <option value="Média">Média</option>
+            <option value="Alta">Alta</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <a href="{{ url_for('tickets.lista') }}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Criar ticket</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Inserir Usuário</h1>
+
+<form method="post">
+    <p>
+        Nome:<br>
+        <input type="text" name="name" required>
+    </p>
+
+    <p>
+        E-mail:<br>
+        <input type="email" name="email" required>
+    </p>
+
+    <p>
+        Perfil:<br>
+        <select name="role">
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+            <option value="staff">Staff</option>
+        </select>
+    </p>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
