@@ -1,0 +1,14 @@
+create database sga;
+use sga;
+
+create table tb_campus(
+id int primary key auto_increment,
+nome varchar(100) not null);
+
+create table tb_alunos(
+id int primary key auto_increment,
+nome varchar(255) not null,
+campus_id int not null,
+constraint foreign key(campus_id) references tb_campus(id));
+
+select * from tb_alunos;
