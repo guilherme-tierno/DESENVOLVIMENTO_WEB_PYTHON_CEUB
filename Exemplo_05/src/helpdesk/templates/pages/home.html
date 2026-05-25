@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>HelpDesk Lite</h1>
+  <p>Exemplo prático da aula de autenticação robusta.</p>
+
+  {% if g.user %}
+    <p>Você está autenticado como <strong>{{ g.user.name }}</strong>. Agora faz sentido falar de sessão, proteção de rotas e comparação de hash sem virar teatro acadêmico.</p>
+    <p>
+      <a class="btn" href="{{ url_for('tickets.lista') }}">Ver tickets</a>
+      <a class="btn" href="{{ url_for('users.lista') }}">Ver usuários</a>
+    </p>
+  {% else %}
+    <p>Faça login para acessar tickets e usuários. Aqui a senha não é salva em texto puro: ela vira <strong>hash</strong> no banco.</p>
+    <p><a class="btn" href="{{ url_for('auth.login') }}">Ir para login</a></p>
+  {% endif %}
+</div>
+{% endblock %}

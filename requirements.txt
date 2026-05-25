@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+python-dotenv
+PyMySQL
+cryptography
+flask-jwt-extended
+bcrypt
+Jinja2
+Werkzeug

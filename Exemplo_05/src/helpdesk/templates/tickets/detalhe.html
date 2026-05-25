@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>{{ ticket.title }}</h1>
+    <p><strong>Cliente:</strong> {{ ticket.customer.name }}</p>
+    <p><strong>Status:</strong> {{ ticket.status }}</p>
+    <p><strong>Prioridade:</strong> {{ ticket.priority }}</p>
+    <p><strong>Descrição:</strong> {{ ticket.description or 'Sem descrição.' }}</p>
+    <h3>Atualizações</h3>
+    <ul>
+        {% for update in ticket.updates %}
+            <li>{{ update.message }} — <strong>{{ update.author.name }}</strong></li>
+        {% else %}
+            <li>Nenhuma atualização registrada.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

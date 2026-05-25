@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>HelpDesk Lite — JWT</h1>
+  <p>Exemplo prático da aula de autenticação com JSON Web Token.</p>
+
+  {% if g.user %}
+    <p>Você está autenticado como <strong>{{ g.user.name }}</strong>. O seu JWT está salvo num cookie HTTP-only — o navegador o envia automaticamente a cada requisição.</p>
+    <p>
+      <a class="btn" href="{{ url_for('tickets.lista') }}">Ver tickets</a>
+      <a class="btn" href="{{ url_for('users.lista') }}">Ver usuários</a>
+    </p>
+  {% else %}
+    <p>Faça login para acessar tickets e usuários. A senha é armazenada como <strong>hash</strong> e, após o login, um <strong>JWT</strong> é gerado e enviado via cookie.</p>
+    <p><a class="btn" href="{{ url_for('auth.login') }}">Ir para login</a></p>
+  {% endif %}
+</div>
+{% endblock %}
