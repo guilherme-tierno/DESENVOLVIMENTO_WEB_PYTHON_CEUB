@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Ticket {{ ticket.id }}{% endblock %}
+{% block content %}
+  <h1>Ticket {{ ticket.title }}</h1>
+  <p><strong>Status:</strong> {{ ticket.status }}</p>
+  <p><strong>Prioridade:</strong> {{ ticket.priority }}</p>
+  <p><strong>Descrição:</strong> {{ ticket.description or '—' }}</p>
+
+  {% if ticket.status == 'open' %}
+    <form method="post" action="{{ url_for('tickets.fechar', ticket_id=ticket.id) }}">
+      <button type="submit">Fechar ticket</button>
+    </form>
+  {% else %}
+    <form method="post" action="{{ url_for('tickets.reabrir', ticket_id=ticket.id) }}">
+      <button type="submit">Reabrir ticket</button>
+    </form>
+  {% endif %}
+{% endblock %}

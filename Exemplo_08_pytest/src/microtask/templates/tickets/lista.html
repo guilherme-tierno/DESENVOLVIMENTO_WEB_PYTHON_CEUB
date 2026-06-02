@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Tickets{% endblock %}
+{% block content %}
+  <h1>Tickets</h1>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Título</th><th>Status</th><th>Prioridade</th></tr>
+    </thead>
+    <tbody>
+      {% for t in tickets %}
+        <tr>
+          <td>{{ t.id }}</td>
+          <td><a href="{{ url_for('tickets.detalhe', ticket_id=t.id) }}">Ticket {{ t.title }}</a></td>
+          <td>{{ t.status }}</td>
+          <td>{{ t.priority }}</td>
+        </tr>
+      {% else %}
+        <tr><td colspan="4">Nenhum ticket cadastrado.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

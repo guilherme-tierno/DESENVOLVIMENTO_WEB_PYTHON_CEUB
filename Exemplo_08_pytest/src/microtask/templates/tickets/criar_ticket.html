@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Novo ticket{% endblock %}
+{% block content %}
+  <h1>Novo ticket</h1>
+  <form method="post" action="{{ url_for('tickets.criar_ticket') }}">
+    <label>Título</label>
+    <input name="title" required minlength="3">
+    <label>Descrição</label>
+    <textarea name="description" rows="4"></textarea>
+    <label>Prioridade</label>
+    <select name="priority">
+      <option value="low">low</option>
+      <option value="medium" selected>medium</option>
+      <option value="high">high</option>
+    </select>
+    <button type="submit">Criar</button>
+  </form>
+{% endblock %}

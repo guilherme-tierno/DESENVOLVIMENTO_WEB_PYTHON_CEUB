@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}MicroTask — Início{% endblock %}
+{% block content %}
+  <h1>MicroTask Helpdesk</h1>
+  <p>Sistema de helpdesk para demonstração de testes automatizados com pytest.</p>
+  <ul>
+    <li><a href="{{ url_for('tickets.lista') }}">Ver tickets</a></li>
+    <li><a href="{{ url_for('users.lista') }}">Ver usuários</a></li>
+    <li><a href="{{ url_for('auth.login') }}">Entrar</a></li>
+  </ul>
+{% endblock %}

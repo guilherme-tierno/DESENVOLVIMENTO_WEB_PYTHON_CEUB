@@ -1,0 +1,22 @@
+[tool.coverage.run]
+source = ["src/microtask"]
+branch = true
+omit = [
+    "*/migrations/*",
+    "*/tests/*",
+    "*/__main__.py",
+    "*/teste_conexao.py",
+]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
